@@ -9,38 +9,128 @@ body {
     grid-template-rows: repeat(3, 1fr);
 }
 
-.buttons {
-    grid-column-start: 1;
-    grid-column-end: 7;
-    grid-row-start: 1;
-    grid-row-end: 2;
+@media (max-width: 1224px) and (min-width: 960px) {
+
+    .buttons {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+    .pictures {
+        grid-column-start: 1;
+        grid-column-end: 5;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    .inputForm {
+        grid-column-start: 5;
+        grid-column-end: 7;
+    }
+
+    #submitButton {
+        font-size: .5rem;
+        width: auto;
+        text-align: center;
+        padding: 3px 10px;
+        float: left;
+    }
+
+    #userInputArea {
+        width: 85%;
+        float: right;
+    }
+
+    .inputLable {
+        font-size: 2.5rem;
+        width: 100%;
+    }
+
+}  
+
+@media (max-width: 958px) and (min-width: 480px) {
+
+    .buttons {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+    .pictures {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    .inputForm {
+        grid-column-start: 4;
+        grid-column-end: 7;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    #submitButton {
+        font-size: .5rem;
+        width: 90%;
+        text-align: center;
+        padding: 3px 10px;
+    }
+
+    #userInputArea {
+        width: 90%;
+        padding: 0;
+    }
+
+    .inputLable {
+        font-size: 2.5rem;
+        width: 100%;
+    }
+
 }
 
-.pictures {
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row-start: 2;
-    grid-row-end: 3;
-}
+@media (max-width : 480px) {
 
-.inputForm {
-    grid-column-start: 5;
-    grid-column-end: 7;
-}
+    .buttons {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
 
-#submitButton {
-    font-size: 50%;
-    width: 40px;
-    text-align: center;
-    padding: 2px 10px 2px 10px;
-}
+    .pictures {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
 
-#userInputArea {
-    float: right;
-    width: 85%;
-}
+    .inputForm {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        text-align: center;
+    }
 
-.inputLable {
-    font-size: 2.5rem;
-    width: 100%;
+    #submitButton {
+        font-size: .5rem;
+        width: 90%;
+        text-align: center;
+        padding: 3px 10px;
+    }
+
+    #userInputArea {
+        width: 90%;
+        padding: 0;
+    }
+
+    .inputLable {
+        font-size: 2.5rem;
+        width: 100%;
+    }
+
 }
