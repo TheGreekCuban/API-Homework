@@ -116,14 +116,10 @@ body {
     .inputForm {
         grid-column-start: 1;
         grid-column-end: 7;
-<<<<<<< HEAD
+
         grid-row-start: 2;
         grid-row-end: 3;
         text-align: center;
-=======
-        grid-row-start: 3;
-        grid-row-end: 4;
->>>>>>> 9ea91b2e067043057d2888f2d99944e8a915e1ea
     }
 
     #submitButton {
