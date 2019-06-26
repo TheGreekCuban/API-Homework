@@ -9,7 +9,7 @@ body {
     grid-template-rows: repeat(3, 1fr);
 }
 
-@media (max-width: 1224px) and (min-width: 960px) {
+@media (min-width: 960px) {
 
     .buttons {
         grid-column-start: 1;
@@ -104,15 +104,15 @@ body {
     .pictures {
         grid-column-start: 1;
         grid-column-end: 7;
-        grid-row-start: 2;
-        grid-row-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
     }
 
     .inputForm {
         grid-column-start: 1;
         grid-column-end: 7;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;
         text-align: center;
     }
 
