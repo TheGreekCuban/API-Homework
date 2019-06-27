@@ -1,22 +1,47 @@
+//We need an array of countries that we will use to dynamically create buttons
+arrayOfCountries = ["America", "Canada", "Mexico", "Greece", "Cuba", "Chile", "Peru", "Switzerland", "France", "Spain",
+"China", "Russia", "Vietnam"]
+
+//We need a function that builds our URL in order to use it in the fetch.
+const urlBuilder = () => {
+    const giphyURL = 'https://api.giphy.com/v1/gifs/search?'
+    
+    let queryParams = {
+        apiKey: 'api_key=k8QvgjlfZJisxH81TEc50Xxb5ZgErQ5i&q=',
+        urlEnd: '&limit=50&offset=0&rating=R&lang=en'
+    }
+
+    let userSearch = document.getElementById("userInputArea").value
+    console.log(userSearch)
+    queryParams.searchTerm = userSearch
+    console.log(queryParams)
+}
 
 
-const giphyURL = 'https://api.giphy.com/v1/gifs/search?api_key=k8QvgjlfZJisxH81TEc50Xxb5ZgErQ5i'
-const country = ''
-const giphySearch = '&q=c' + country
-const giphyLimit = '&limit=100'
-const giphyMiscContent ='&offset=0&rating=R&lang=en'
-const finalURL = `${giphyURL}${giphySearch}${giphyLimit}${giphyMiscContent}`
+//This is a function that clears the textbox after every addition, it is run as a part of the onclick code. 
+const clear = () => {
+    document.getElementById("userInputArea").value = ''
+}
 
-fetch(finalURL)
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(myJson) {
-    console.log("GIPHY URL: ", myJson.data[0].images.original.url)
-  });
 
-const leleA = document.getElementById("userInputArea").value
-console.log(leleA)
+//This is the click event that will build the URL using our search term and begin the sarch.
+document.getElementById("submitButton").onclick = function (event) {
+    
+    event.preventDefault()
+    
+    clear()
+
+    const finalURL = urlBuilder()
+
+    fetch(finalURL).then(function(response) {
+        return response.json();
+    }).then(function(myJson) {
+        console.log("OBJ ", JSON.stringify(myJson))
+    });
+
+}
+
+
 
 
 

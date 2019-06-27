@@ -34,13 +34,18 @@ body {
         font-size: .5rem;
         width: auto;
         text-align: center;
-        padding: 3px 10px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        border-radius: 5px;
         float: left;
     }
 
     #userInputArea {
         width: 85%;
         float: right;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 5px;
     }
 
     .inputLable {
@@ -78,16 +83,16 @@ body {
         font-size: .5rem;
         width: 100%;
         text-align: center;
-        padding: 10px 10px;
+        padding: 5px 10px;
         border-radius: 10px;
         margin-left: 2px;
     }
 
     #userInputArea {
         width: 100%;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border-radius: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 5px;
     }
 
     .inputLable {
@@ -126,16 +131,16 @@ body {
         font-size: .5rem;
         width: 85%;
         text-align: center;
-        padding: 10px 10px;
+        padding: 5px 10px;
         border-radius: 10px;
         margin-left: 2px;
     }
 
     #userInputArea {
         width: 85%;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border-radius: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 5px;
     }
 
     .inputLable {
