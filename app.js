@@ -12,9 +12,11 @@ const urlBuilder = () => {
     }
 
     let userSearch = document.getElementById("userInputArea").value
-    console.log(userSearch)
     queryParams.searchTerm = userSearch
-    console.log(queryParams)
+
+    //create the final URL:
+    let finalURL = `${giphyURL}${queryParams.apiKey}${queryParams.userSearch}${queryParams.urlEnd}`
+    return finalURL
 }
 
 
@@ -26,19 +28,16 @@ const clear = () => {
 
 //This is the click event that will build the URL using our search term and begin the sarch.
 document.getElementById("submitButton").onclick = function (event) {
-    
     event.preventDefault()
-    
     clear()
-
-    const finalURL = urlBuilder()
+    
+    let finalURL = urlBuilder()
 
     fetch(finalURL).then(function(response) {
         return response.json();
     }).then(function(myJson) {
-        console.log("OBJ ", JSON.stringify(myJson))
+        console.log("OBJ: ", myJson.data[0].images.original.url)
     });
-
 }
 
 
