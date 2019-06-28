@@ -5,7 +5,7 @@ body {
 
 .container {
     display: grid;
-    overflow: auto;
+    height: 600px;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(3, 1fr);
 }
@@ -19,11 +19,13 @@ body {
         grid-row-end: 2;
     }
 
-    .pictures {
+    #pictures {
         grid-column-start: 1;
         grid-column-end: 5;
         grid-row-start: 2;
         grid-row-end: 3;
+        height: 300px;
+        float: left;
     }
 
     .inputForm {
@@ -38,6 +40,7 @@ body {
         padding-top: 7px;
         padding-bottom: 7px;
         border-radius: 5px;
+        width: 40px;
         float: left;
     }
 
@@ -65,19 +68,19 @@ body {
         grid-row-end: 2;
     }
 
-    .pictures {
+    #pictures {
         grid-column-start: 1;
-        grid-column-end: 4;
+        grid-column-end: 5;
         grid-row-start: 2;
         grid-row-end: 3;
     }
 
     .inputForm {
-        grid-column-start: 4;
+        grid-column-start: 5;
         grid-column-end: 7;
         grid-row-start: 2;
         grid-row-end: 3;
-        text-align: center;
+        text-align: left;
     }
 
     #submitButton {
@@ -103,7 +106,7 @@ body {
 
 }
 
-@media (max-width : 480px) {
+@media (max-width : 725px) {
 
     .buttons {
         grid-column-start: 1;
@@ -112,7 +115,7 @@ body {
         grid-row-end: 2;
     }
 
-    .pictures {
+    #pictures {
         grid-column-start: 1;
         grid-column-end: 7;
         grid-row-start: 3;

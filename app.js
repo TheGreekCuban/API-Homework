@@ -1,17 +1,19 @@
 //We need an array of countries that we will use to dynamically create buttons
-
+arrayOfCountries = ["America", "Canada", "Mexico", "Greece", "Cuba", "Chile", "Peru", "Switzerland", "France", "Spain",
+"China", "Russia", "Vietnam"]
 
 //We need a function that dynamically creates all these buttons on page load
-window.onload = function () {
-    arrayOfCountries = ["America", "Canada", "Mexico", "Greece", "Cuba", "Chile", "Peru", "Switzerland", "France", "Spain",
-      "China", "Russia", "Vietnam"]
+window.onload =  function () {
 
     for (let i = 0; i < arrayOfCountries.length; i++) {
       let currentCountry = arrayOfCountries[i]
       let buttonDiv = document.createElement('button')
 
-      //set classes of buttonDiv
-      buttonDiv.setAttribute("class", "dynamicButtons")
+      //set id of dynamicButtons
+      buttonDiv.setAttribute("id", "dynamicButtons")
+
+      //set class of buttonsDiv
+      buttonDiv.setAttribute("class", "buttonsDiv")
 
       //set value of country
       buttonDiv.setAttribute("country", currentCountry)
@@ -24,8 +26,8 @@ window.onload = function () {
   }
 }
 
-//We need a function that builds our URL in order to use it in the fetch.
-const urlBuilder = () => {
+//We need a function that builds our URL in order to use it in the fetch from the search bar.
+const urlBuilderSearch = () => {
     
     let queryParams = {
         giphyURL: 'https://api.giphy.com/v1/gifs/search?',
@@ -42,7 +44,6 @@ const urlBuilder = () => {
     return finalURL
 }
 
-
 //This is a function that clears the textbox after every addition, it is run as a part of the onclick code. 
 const clear = () => {
     document.getElementById("userInputArea").value = ''
@@ -53,7 +54,7 @@ const clear = () => {
 document.getElementById("submitButton").onclick = function (event) {
     event.preventDefault()
     
-    let finalURL = urlBuilder()
+    let finalURL = urlBuilderSearch()
 
     fetch(finalURL).then(function(response) {
         return response.json();
@@ -90,23 +91,43 @@ document.getElementById("submitButton").onclick = function (event) {
     });   
 }
 
-//This function will set the value of the button clicked to the query parameter search term
-
 //This function will create a new button with the search term once the button is clicked
 const addButtons = () => {
   let userSearch = document.getElementById("userInputArea").value
 
-  //create a button div
+  //push the userSearch into the array 
+  arrayOfCountries.push(userSearch)
+
+  //create a button div and set the matching attributes
   let buttonDiv = document.createElement('button')
   buttonDiv.setAttribute('country', userSearch)
-  buttonDiv.innerHTML = userSearch
+  buttonDiv.setAttribute('id', 'dynamicButtons')
+  buttonsDiv.setAttribute('calss', 'buttonsDiv')
+  buttonDiv.innerText = userSearch
 
   //append button to buttons div
   document.getElementById('buttonsDiv').appendChild(buttonDiv)
+
+  //This function will set the value of the button clicked to the query parameter search term
+  document.getElementById("dynamicButtons").onclick = urlBuilderButton()  
 }
 
+//We need a function that will run an api call from the button clicked
+const urlBuilderButton = () => {
+    
+    let queryParams = {
+        giphyURL: 'https://api.giphy.com/v1/gifs/search?',
+        apiKey: 'api_key=k8QvgjlfZJisxH81TEc50Xxb5ZgErQ5i&q=',
+        urlEnd: '&limit=3&offset=0&rating=R&lang=en'
+    }
 
+    let buttonSearch = document.getElementById("buttonsDiv").getAttribute("country")
+    console.log("User Search: ", buttonSearch)
 
+    //create the final URL:
+    let finalURL = `${queryParams.giphyURL}${queryParams.apiKey}${buttonSearch}${queryParams.urlEnd}`
+    console.log("URL: ", finalURL)
+    return finalURL
+}  
 
-
-
+console.log(document.getElementById('test').getAttribute("country"))
