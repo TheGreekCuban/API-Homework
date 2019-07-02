@@ -79,14 +79,14 @@ document.getElementById("submitButton").onclick = function (event) {
         let innerPicDiv = document.createElement('img')
 
         //Set id for images
-        innerPicDiv.onclick = e => replaceImgs(e, innerPicDiv, secondUrl, imageURL)
+        innerPicDiv.onclick = e => replaceImgs(e, innerPicDiv, secondUrl, imageURL, i)
 
         //Create attribute for data-state (still, moving)
         innerPicDiv.setAttribute('data-state', 'still')
 
         //This information
         innerPicDiv.setAttribute('src', imageURL)
-        innerPicDiv.setAttribute('id', "innerPicDiv")
+        innerPicDiv.setAttribute('id', i)
         innerPicDiv.style.width = "150px"
         innerPicDiv.style.height = "150px"
 
@@ -103,17 +103,18 @@ document.getElementById("submitButton").onclick = function (event) {
 }
 
 //Create a function that replaces the static image URL with the animated one
-const replaceImgs = (event, innerPicDiv, secondUrl, imageURL) => {
+const replaceImgs = (event, innerPicDiv, secondUrl, imageURL, i) => {
     event.preventDefault()
+    console.log(this);
 
-    let dataState = document.getElementById("innerPicDiv").getAttribute('data-state')
+    let dataState = document.getElementById(i).getAttribute('data-state')
     
     if(dataState === 'still') {
-        document.getElementById("innerPicDiv").setAttribute('src', secondUrl)
-        document.getElementById("innerPicDiv").setAttribute('data-state', 'animated')
+        document.getElementById(i).setAttribute('src', secondUrl)
+        document.getElementById(i).setAttribute('data-state', 'animated')
     } else {
-        document.getElementById("innerPicDiv").setAttribute('src', imageURL)
-        document.getElementById("innerPicDiv").setAttribute('data-state', 'still')
+        document.getElementById(i).setAttribute('src', imageURL)
+        document.getElementById(i).setAttribute('data-state', 'still')
     }
 }
 
@@ -171,8 +172,16 @@ const urlBuilderButton = (event, userSearch) => {
         let imageURL = myJson.data[i].images.original_still.url
         let secondUrl = myJson.data[i].images.original.url
         let innerPicDiv = document.createElement('img')
+        
+        //Set id for images
+        innerPicDiv.onclick = e => replaceImgs(e, innerPicDiv, secondUrl, imageURL, i)
 
+        //Create attribute for data-state (still, moving)
+        innerPicDiv.setAttribute('data-state', 'still')
+
+        //This information
         innerPicDiv.setAttribute('src', imageURL)
+        innerPicDiv.setAttribute('id', i)
         innerPicDiv.style.width = "150px"
         innerPicDiv.style.height = "150px"
 
