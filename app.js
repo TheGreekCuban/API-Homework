@@ -38,6 +38,11 @@ const urlBuilderSearch = () => {
     }
 
     let userSearch = document.getElementById("userInputArea").value
+
+    if(!userSearch) {
+        alert("Invalid Entry, Please Input A Country.")
+    }
+
     console.log("User Search: ", userSearch)
 
     //create the final URL:
@@ -121,6 +126,8 @@ const replaceImgs = (event, innerPicDiv, secondUrl, imageURL, i) => {
 //This function will create a new button with the search term once the button is clicked
 const addButtons = () => {
   let userSearch = document.getElementById("userInputArea").value
+  
+  if(!userSearch) { return }
 
   //push the userSearch into the array 
   arrayOfCountries.push(userSearch)
