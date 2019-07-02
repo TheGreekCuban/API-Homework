@@ -74,10 +74,19 @@ document.getElementById("submitButton").onclick = function (event) {
         innerPDiv.innerHTML = `Rating: ${rating}`
 
         //We must set the src attribute to the image url of the dynamically created image div
-        let imageURL = myJson.data[i].images.original.url
+        let imageURL = myJson.data[i].images.original_still.url
+        let secondUrl = myJson.data[i].images.original.url
         let innerPicDiv = document.createElement('img')
 
+        //Set id for images
+        innerPicDiv.onclick = e => replaceImgs(e, innerPicDiv, secondUrl, imageURL)
+
+        //Create attribute for data-state (still, moving)
+        innerPicDiv.setAttribute('data-state', 'still')
+
+        //This information
         innerPicDiv.setAttribute('src', imageURL)
+        innerPicDiv.setAttribute('id', "innerPicDiv")
         innerPicDiv.style.width = "150px"
         innerPicDiv.style.height = "150px"
 
@@ -86,11 +95,26 @@ document.getElementById("submitButton").onclick = function (event) {
         innerAppendDiv.append(innerPicDiv)
 
         //Once done with the loop we must prepend the innerDiv to the page 
-        document.getElementById('pictures').prepend(innerAppendDiv)   
+        document.getElementById('pictures').prepend(innerAppendDiv)
         }
         addButtons()
         clear()
     });   
+}
+
+//Create a function that replaces the static image URL with the animated one
+const replaceImgs = (event, innerPicDiv, secondUrl, imageURL) => {
+    event.preventDefault()
+
+    let dataState = document.getElementById("innerPicDiv").getAttribute('data-state')
+    
+    if(dataState === 'still') {
+        document.getElementById("innerPicDiv").setAttribute('src', secondUrl)
+        document.getElementById("innerPicDiv").setAttribute('data-state', 'animated')
+    } else {
+        document.getElementById("innerPicDiv").setAttribute('src', imageURL)
+        document.getElementById("innerPicDiv").setAttribute('data-state', 'still')
+    }
 }
 
 //This function will create a new button with the search term once the button is clicked
@@ -144,7 +168,8 @@ const urlBuilderButton = (event, userSearch) => {
         innerPDiv.innerHTML = `Rating: ${rating}`
 
         //We must set the src attribute to the image url of the dynamically created image div
-        let imageURL = myJson.data[i].images.original.url
+        let imageURL = myJson.data[i].images.original_still.url
+        let secondUrl = myJson.data[i].images.original.url
         let innerPicDiv = document.createElement('img')
 
         innerPicDiv.setAttribute('src', imageURL)
