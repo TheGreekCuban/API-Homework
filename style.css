@@ -10,7 +10,7 @@ body {
     grid-template-rows: repeat(3, 1fr);
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1015px) {
 
     .buttons {
         grid-column-start: 1;
@@ -31,6 +31,8 @@ body {
     .inputForm {
         grid-column-start: 5;
         grid-column-end: 7;
+        margin-top: 20px;
+        margin-right: 20px;
     }
 
     #submitButton {
@@ -59,7 +61,7 @@ body {
 
 }  
 
-@media (max-width: 958px) and (min-width: 480px) {
+@media (max-width: 1014px) and (min-width: 480px) {
 
     .buttons {
         grid-column-start: 1;

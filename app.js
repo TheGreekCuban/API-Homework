@@ -1,5 +1,5 @@
 //We need an array of countries that we will use to dynamically create buttons
-arrayOfCountries = ["America", "Canada", "Mexico", "Greece", "Cuba", "Chile", "Peru", "Switzerland", "France", "Spain",
+let arrayOfCountries = ["America", "Canada", "Mexico", "Greece", "Cuba", "Chile", "Peru", "Switzerland", "France", "Spain",
 "China", "Vietnam"]
 
 //We need a function that dynamically creates all these buttons on page load
@@ -43,11 +43,8 @@ const urlBuilderSearch = () => {
         alert("Invalid Entry, Please Input A Country.")
     }
 
-    console.log("User Search: ", userSearch)
-
     //create the final URL:
     let finalURL = `${queryParams.giphyURL}${queryParams.apiKey}${userSearch}${queryParams.urlEnd}`
-    console.log("URL: ", finalURL)
     return finalURL
 }
 
@@ -83,8 +80,10 @@ document.getElementById("submitButton").onclick = function (event) {
         let secondUrl = myJson.data[i].images.original.url
         let innerPicDiv = document.createElement('img')
 
+        let userSearch = document.getElementById("userInputArea").value
+
         //Set id for images
-        innerPicDiv.onclick = e => replaceImgs(e, innerPicDiv, secondUrl, imageURL, i)
+        innerPicDiv.onclick = e => replaceImgs(e, innerPicDiv, secondUrl, imageURL, i, userSearch)
 
         //Create attribute for data-state (still, moving)
         innerPicDiv.setAttribute('data-state', 'still')
@@ -92,6 +91,7 @@ document.getElementById("submitButton").onclick = function (event) {
         //This information
         innerPicDiv.setAttribute('src', imageURL)
         innerPicDiv.setAttribute('id', i)
+        innerPicDiv.setAttribute('country', userSearch)
         innerPicDiv.style.width = "150px"
         innerPicDiv.style.height = "150px"
 
@@ -99,31 +99,55 @@ document.getElementById("submitButton").onclick = function (event) {
         innerAppendDiv.append(innerPDiv)
         innerAppendDiv.append(innerPicDiv)
 
-        //Once done with the loop we must prepend the innerDiv to the page 
-        document.getElementById('pictures').prepend(innerAppendDiv)
+        //Push innerAppendDiv to array
+        arrayOfDivs.push(innerAppendDiv)
+
+        //Create append function
+        appendImgs(innerAppendDiv, i)
         }
         addButtons()
         clear()
     });   
 }
 
-//Create a function that replaces the static image URL with the animated one
-const replaceImgs = (event, innerPicDiv, secondUrl, imageURL, i) => {
-    event.preventDefault()
-    console.log(this);
+//This function will append one image to each row in the grid
+const appendImgs = (innerAppendDiv, i) => {
 
-    let dataState = document.getElementById(i).getAttribute('data-state')
-    
-    if(dataState === 'still') {
-        document.getElementById(i).setAttribute('src', secondUrl)
-        document.getElementById(i).setAttribute('data-state', 'animated')
-    } else {
-        document.getElementById(i).setAttribute('src', imageURL)
-        document.getElementById(i).setAttribute('data-state', 'still')
+    switch (i) {
+    case 0:
+        document.getElementById('pictures1').prepend(innerAppendDiv)
+        break;
+    case 1:
+        document.getElementById('pictures2').prepend(innerAppendDiv)
+        break;   
+    case 2:
+        document.getElementById('pictures3').prepend(innerAppendDiv)
+        break;
     }
 }
 
-//This function will create a new button with the search term once the button is clicked
+//Create a function that replaces the static image URL with the animated one
+const replaceImgs = (event, innerPicDiv, secondUrl, imageURL, i, userSearch) => {
+    event.preventDefault()
+
+    for (let j = 0; j < arrayOfCountries.length; j++) {
+        let currentCountry = arrayOfCountries[j]
+
+        if (currentCountry.toLowerCase() === userSearch.toLowerCase()) {
+
+            let dataState = document.getElementById(i).getAttribute('data-state')
+            
+            if(dataState === 'still') {
+                document.getElementById(i).setAttribute('src', secondUrl)
+                document.getElementById(i).setAttribute('data-state', 'animated')
+            } else {
+                document.getElementById(i).setAttribute('src', imageURL)
+                document.getElementById(i).setAttribute('data-state', 'still')
+            }
+        }    
+    }    
+}
+
 const addButtons = () => {
   let userSearch = document.getElementById("userInputArea").value
   
@@ -131,7 +155,6 @@ const addButtons = () => {
 
   //push the userSearch into the array 
   arrayOfCountries.push(userSearch)
-  //console.log("user search 1: ", userSearch)
 
   //create a button div and set the matching attributes
   let buttonDiv = document.createElement('button')
@@ -154,8 +177,6 @@ const urlBuilderButton = (event, userSearch) => {
         apiKey: 'api_key=k8QvgjlfZJisxH81TEc50Xxb5ZgErQ5i&q=',
         urlEnd: '&limit=3&offset=0&rating=R&lang=en'
     }
-    
-    console.log("User Search 2: ", userSearch)
 
     //create the final URL:
     let finalURL = `${queryParams.giphyURL}${queryParams.apiKey}${userSearch}${queryParams.urlEnd}`
@@ -181,7 +202,7 @@ const urlBuilderButton = (event, userSearch) => {
         let innerPicDiv = document.createElement('img')
         
         //Set id for images
-        innerPicDiv.onclick = e => replaceImgs(e, innerPicDiv, secondUrl, imageURL, i)
+        innerPicDiv.onclick = e => replaceImgs(e, innerPicDiv, secondUrl, imageURL, i, userSearch)
 
         //Create attribute for data-state (still, moving)
         innerPicDiv.setAttribute('data-state', 'still')
@@ -189,15 +210,17 @@ const urlBuilderButton = (event, userSearch) => {
         //This information
         innerPicDiv.setAttribute('src', imageURL)
         innerPicDiv.setAttribute('id', i)
+        innerPicDiv.setAttribute('country', userSearch)
         innerPicDiv.style.width = "150px"
         innerPicDiv.style.height = "150px"
 
         //We must appen those to the innerDiv
         innerAppendDiv.append(innerPDiv)
         innerAppendDiv.append(innerPicDiv)
+        
+        //Create append function
+        appendImgs(innerAppendDiv, i)
 
-        //Once done with the loop we must prepend the innerDiv to the page 
-        document.getElementById('pictures').prepend(innerAppendDiv)   
         }
         clear()
     });   
