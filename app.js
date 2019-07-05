@@ -81,16 +81,17 @@ document.getElementById("submitButton").onclick = function (event) {
         let innerPicDiv = document.createElement('img')
 
         let userSearch = document.getElementById("userInputArea").value
+        let mainID = userSearch + i
 
         //Set id for images
-        innerPicDiv.onclick = e => replaceImgs(e, innerPicDiv, secondUrl, imageURL, i, userSearch)
+        innerPicDiv.onclick = e => replaceImgs(e, innerPicDiv, secondUrl, imageURL, mainID)
 
         //Create attribute for data-state (still, moving)
         innerPicDiv.setAttribute('data-state', 'still')
 
         //This information
         innerPicDiv.setAttribute('src', imageURL)
-        innerPicDiv.setAttribute('id', i)
+        innerPicDiv.setAttribute('id', mainID)
         innerPicDiv.setAttribute('country', userSearch)
         innerPicDiv.style.width = "150px"
         innerPicDiv.style.height = "150px"
@@ -98,9 +99,6 @@ document.getElementById("submitButton").onclick = function (event) {
         //We must appen those to the innerDiv
         innerAppendDiv.append(innerPDiv)
         innerAppendDiv.append(innerPicDiv)
-
-        //Push innerAppendDiv to array
-        arrayOfDivs.push(innerAppendDiv)
 
         //Create append function
         appendImgs(innerAppendDiv, i)
@@ -126,27 +124,20 @@ const appendImgs = (innerAppendDiv, i) => {
     }
 }
 
-//Create a function that replaces the static image URL with the animated one
+//!!!### Create a function that replaces the static image URL with the animated one ###!!!
 const replaceImgs = (event, innerPicDiv, secondUrl, imageURL, i, userSearch) => {
     event.preventDefault()
-
-    for (let j = 0; j < arrayOfCountries.length; j++) {
-        let currentCountry = arrayOfCountries[j]
-
-        if (currentCountry.toLowerCase() === userSearch.toLowerCase()) {
-
-            let dataState = document.getElementById(i).getAttribute('data-state')
-            
-            if(dataState === 'still') {
-                document.getElementById(i).setAttribute('src', secondUrl)
-                document.getElementById(i).setAttribute('data-state', 'animated')
-            } else {
-                document.getElementById(i).setAttribute('src', imageURL)
-                document.getElementById(i).setAttribute('data-state', 'still')
-            }
-        }    
-    }    
-}
+    
+    let dataState = document.getElementById(i).getAttribute('data-state')
+    
+    if(dataState === 'still') {
+        document.getElementById(i).setAttribute('src', secondUrl)
+        document.getElementById(i).setAttribute('data-state', 'animated')
+    } else {
+        document.getElementById(i).setAttribute('src', imageURL)
+        document.getElementById(i).setAttribute('data-state', 'still')
+    }
+}     
 
 const addButtons = () => {
   let userSearch = document.getElementById("userInputArea").value
@@ -202,14 +193,16 @@ const urlBuilderButton = (event, userSearch) => {
         let innerPicDiv = document.createElement('img')
         
         //Set id for images
-        innerPicDiv.onclick = e => replaceImgs(e, innerPicDiv, secondUrl, imageURL, i, userSearch)
+        innerPicDiv.onclick = e => replaceImgs(e, innerPicDiv, secondUrl, imageURL, mainID)
 
         //Create attribute for data-state (still, moving)
         innerPicDiv.setAttribute('data-state', 'still')
 
+        let mainID = userSearch + i
+
         //This information
         innerPicDiv.setAttribute('src', imageURL)
-        innerPicDiv.setAttribute('id', i)
+        innerPicDiv.setAttribute('id', mainID)
         innerPicDiv.setAttribute('country', userSearch)
         innerPicDiv.style.width = "150px"
         innerPicDiv.style.height = "150px"
