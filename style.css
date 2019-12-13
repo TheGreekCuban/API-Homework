@@ -1,6 +1,8 @@
 body {
     font-size: 20px;
     font-family: 'Amatic SC', cursive;
+    height: 100%;
+    margin: 0;
 }
 
 .container {
@@ -10,7 +12,11 @@ body {
     grid-template-rows: repeat(3, 1fr);
 }
 
-@media (min-width: 1015px) {
+@media (min-width: 1036px) {
+
+    .container {
+        padding: 2.5%;
+    }
 
     .buttons {
         grid-column-start: 1;
@@ -61,7 +67,11 @@ body {
 
 }  
 
-@media (max-width: 1014px) and (min-width: 480px) {
+@media (max-width: 1035px) and (min-width: 500px) {
+    
+    .container {
+        padding: 5%;
+    }
 
     .buttons {
         grid-column-start: 1;
@@ -102,32 +112,36 @@ body {
     }
 
     .inputLable {
-        font-size: 2.5rem;
+        font-size: 2rem;
         width: 100%;
     }
 
 }
 
-@media (max-width : 725px) {
+@media (max-width : 650px) {
 
     .buttons {
         grid-column-start: 1;
         grid-column-end: 7;
         grid-row-start: 1;
         grid-row-end: 2;
+        padding-left: 2.5%;
+        padding-right: 2.5%;
     }
 
-    #pictures {
-        grid-column-start: 1;
-        grid-column-end: 7;
-        grid-row-start: 3;
-        grid-row-end: 4;
+    #pictures1,
+    #pictures2,
+    #pictures3 {
+        grid-column-start: 3;
+        grid-column-end: 5;
+        /* grid-row-start: 3;
+        grid-row-end: 4; */
     }
 
     .inputForm {
         grid-column-start: 1;
         grid-column-end: 7;
-
+        margin: 2.5% 0;
         grid-row-start: 2;
         grid-row-end: 3;
         text-align: center;
