@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,33 +10,41 @@
 
     <title>Gif Country Generator</title>
 </head>
+
 <body>
 
-<div class='container'>
-    <!--
+    <div class="instructions">
+        <h2>Welcome to the GIPHY API Country Generator. If you click a button, GIFs related to that country will appear.
+            You can play or pause those GIFs by clicking on them. If you want to add a button, you can do so by typing
+            in the name of the country and clicking add!</h2>
+    </div>
+
+    <div class='container'>
+        <!--
     This is where we will have an initial set of buttons linked to an array. The new item inputed on the form will append
     itself to the button div.
     -->
-    <div class="buttons" id="buttonsDiv"></div>
-    
-    <!--This is where we will dynamically update the page using javascript-->
-    <div id="pictures1"></div>
-    <div id="pictures2"></div>
-    <div id="pictures3"></div>
-    <!--This is where we will put the input form-->
-    <div class="inputForm">
-        <form class="form">
-            <div>
-                <lable class="inputLable" for="input">Enter Country Below</lable>
-                <input type="text" id="userInputArea" name="userCountry">
-            </div>
-            <div class="button">
-                <button type="submit" id="submitButton">ADD</button>
-            </div>
-        </form>
+        <div class="buttons" id="buttonsDiv"></div>
+
+        <!--This is where we will dynamically update the page using javascript-->
+        <div id="pictures1"></div>
+        <div id="pictures2"></div>
+        <div id="pictures3"></div>
+        <!--This is where we will put the input form-->
+        <div class="inputForm">
+            <form class="form">
+                <div>
+                    <lable class="inputLable" for="input">Enter Country Below</lable>
+                    <input type="text" id="userInputArea" name="userCountry">
+                </div>
+                <div class="button">
+                    <button type="submit" id="submitButton">ADD</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
     <script src="app.js"></script>
 </body>
+
 </html>
